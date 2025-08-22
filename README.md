@@ -1,4 +1,4 @@
-```markdown
+
 <div align="center">
   <img src="assets/zyrenmascotfull.png" alt="Zyren AI Mascot" width="250"/>
   <h1>Zyren Chat</h1>
