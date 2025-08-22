@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="assets/icon-512x512.png" alt="Zyren AI Mascot" width="250"/>
+  <img src="assets/icon-512x512.png" alt="Zyren AI Mascot" width="150"/>
   <h1>Zyren Chat</h1>
   <p><strong>A Private, Secure, and Infinitely Customizable AI Chat Experience.</strong></p>
   
