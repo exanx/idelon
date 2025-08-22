@@ -1,3 +1,33 @@
+You are absolutely right. My sincerest apologies. You've encountered a classic "escaping" issue.
+
+The error message is 100% correct. GitHub's Mermaid renderer is very strict about special characters like parentheses () inside node labels. It thinks the ( is part of the diagram's syntax, not part of the text.
+
+The Solution
+
+The fix is simple: we need to enclose the text within the nodes in double quotes " to tell Mermaid to treat it as a literal string.
+
+I have corrected the README.md code below. I have only changed the Mermaid diagram section; the rest of the file was perfect.
+
+How to Fix
+
+Open your README.md file.
+
+Find the section under "Secure Architecture Explained".
+
+Replace the entire mermaid ... code block with the corrected version below.
+
+Commit and push the change to GitHub. It will now render perfectly.
+
+Corrected README.md File
+
+Here is the full, corrected file. The only change is inside the Mermaid diagram.
+
+code
+Markdown
+download
+content_copy
+expand_less
+
 <div align="center">
   <img src="assets/zyrenmascotfull.png" alt="Zyren AI Mascot" width="250"/>
   <h1>Zyren Chat</h1>
@@ -46,9 +76,87 @@ The core of Zyren Chat's privacy model is its architecture. Your browser **never
 
 ```mermaid
 graph TD
-    A[User's Browser] -- 1. Sends Prompt & Firebase Auth Token --> B(Cloudflare Worker Proxy);
-    B -- 2. Verifies Token & Fetches User's Data --> C{Firestore Database};
-    C -- 3. Securely Returns Encrypted API Key --> B;
-    B -- 4. Decrypts Key & Forwards Prompt --> D[External AI API (Gemini, Groq, etc.)];
-    D -- 5. Sends Response Back --> B;
-    B -- 6. Forwards AI Response to User --> A;
+    A["User's Browser"] -- "1. Sends Prompt & Firebase Auth Token" --> B("Cloudflare Worker Proxy");
+    B -- "2. Verifies Token & Fetches User's Data" --> C{"Firestore Database"};
+    C -- "3. Securely Returns Encrypted API Key" --> B;
+    B -- "4. Decrypts Key & Forwards Prompt" --> D["External AI API (Gemini, Groq, etc.)"];
+    D -- "5. Sends Response Back" --> B;
+    B -- "6. Forwards AI Response to User" --> A;
+
+This ensures your secret keys are only ever decrypted and used in the secure, serverless environment of the Cloudflare Worker.
+
+🛠️ Tech Stack
+
+Frontend: HTML5, Tailwind CSS, Vanilla JavaScript (ESM)
+
+Backend & Cloud:
+
+Firebase: Authentication, Firestore (Database), Hosting
+
+Cloudflare Workers: Secure API Proxy
+
+APIs: Google Gemini, Groq, OpenRouter
+
+🚀 Getting Started Locally
+
+To run your own instance of Zyren Chat, you'll need two main components: the frontend application and the secure worker proxy.
+
+Prerequisites
+
+Node.js and npm
+
+Firebase CLI (npm install -g firebase-tools)
+
+Cloudflare Wrangler CLI (npm install -g wrangler)
+
+1. Frontend Setup (Firebase)
+
+Clone this repository: git clone https://github.com/exanx/zyren.git
+
+Navigate to the project directory: cd zyren
+
+Set up your own Firebase project and create a new Web App.
+
+In public/index.html, replace the placeholder firebaseConfig object with your own.
+
+Run firebase serve to test locally.
+
+Deploy with firebase deploy --only hosting.
+
+2. Backend Proxy Setup (Cloudflare)
+
+The proxy code is located in the zyren-api-proxy directory.
+
+Navigate to the proxy directory: cd zyren-api-proxy
+
+Install dependencies: npm install
+
+Go to your new Firebase project's settings, under "Service Accounts," and generate a new private key. This will download a JSON file.
+
+Run wrangler secret put FIREBASE_SERVICE_ACCOUNT and paste the entire content of the downloaded JSON file.
+
+In src/index.js, update the FIREBASE_PROJECT_ID and the Access-Control-Allow-Origin URL to match your project.
+
+Deploy the worker: wrangler deploy
+
+Copy the URL provided by Wrangler and paste it into the proxyUrl variable in your main public/index.html file.
+
+🗺️ Future Roadmap
+
+Real-time streaming for AI responses.
+
+Support for more AI providers.
+
+In-app message editing and regeneration.
+
+More advanced persona creation tools.
+
+UI/UX enhancements and new themes.
+
+🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
