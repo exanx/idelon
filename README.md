@@ -1,33 +1,4 @@
-You are absolutely right. My sincerest apologies. You've encountered a classic "escaping" issue.
-
-The error message is 100% correct. GitHub's Mermaid renderer is very strict about special characters like parentheses () inside node labels. It thinks the ( is part of the diagram's syntax, not part of the text.
-
-The Solution
-
-The fix is simple: we need to enclose the text within the nodes in double quotes " to tell Mermaid to treat it as a literal string.
-
-I have corrected the README.md code below. I have only changed the Mermaid diagram section; the rest of the file was perfect.
-
-How to Fix
-
-Open your README.md file.
-
-Find the section under "Secure Architecture Explained".
-
-Replace the entire mermaid ... code block with the corrected version below.
-
-Commit and push the change to GitHub. It will now render perfectly.
-
-Corrected README.md File
-
-Here is the full, corrected file. The only change is inside the Mermaid diagram.
-
-code
-Markdown
-download
-content_copy
-expand_less
-
+```markdown
 <div align="center">
   <img src="assets/zyrenmascotfull.png" alt="Zyren AI Mascot" width="250"/>
   <h1>Zyren Chat</h1>
@@ -82,81 +53,58 @@ graph TD
     B -- "4. Decrypts Key & Forwards Prompt" --> D["External AI API (Gemini, Groq, etc.)"];
     D -- "5. Sends Response Back" --> B;
     B -- "6. Forwards AI Response to User" --> A;
+```
 
 This ensures your secret keys are only ever decrypted and used in the secure, serverless environment of the Cloudflare Worker.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-Frontend: HTML5, Tailwind CSS, Vanilla JavaScript (ESM)
+-   **Frontend:** HTML5, Tailwind CSS, Vanilla JavaScript (ESM)
+-   **Backend & Cloud:**
+    -   **Firebase:** Authentication, Firestore (Database), Hosting
+    -   **Cloudflare Workers:** Secure API Proxy
+-   **APIs:** Google Gemini, Groq, OpenRouter
 
-Backend & Cloud:
-
-Firebase: Authentication, Firestore (Database), Hosting
-
-Cloudflare Workers: Secure API Proxy
-
-APIs: Google Gemini, Groq, OpenRouter
-
-🚀 Getting Started Locally
+## 🚀 Getting Started Locally
 
 To run your own instance of Zyren Chat, you'll need two main components: the frontend application and the secure worker proxy.
 
-Prerequisites
+### Prerequisites
+-   Node.js and npm
+-   Firebase CLI (`npm install -g firebase-tools`)
+-   Cloudflare Wrangler CLI (`npm install -g wrangler`)
 
-Node.js and npm
+### 1. Frontend Setup (Firebase)
+1.  Clone this repository: `git clone https://github.com/exanx/zyren.git`
+2.  Navigate to the project directory: `cd zyren`
+3.  Set up your own Firebase project and create a new Web App.
+4.  In `public/index.html`, replace the placeholder `firebaseConfig` object with your own.
+5.  Run `firebase serve` to test locally.
+6.  Deploy with `firebase deploy --only hosting`.
 
-Firebase CLI (npm install -g firebase-tools)
+### 2. Backend Proxy Setup (Cloudflare)
+The proxy code is located in the `zyren-api-proxy` directory.
 
-Cloudflare Wrangler CLI (npm install -g wrangler)
+1.  Navigate to the proxy directory: `cd zyren-api-proxy`
+2.  Install dependencies: `npm install`
+3.  Go to your new Firebase project's settings, under "Service Accounts," and generate a new private key. This will download a JSON file.
+4.  Run `wrangler secret put FIREBASE_SERVICE_ACCOUNT` and paste the entire content of the downloaded JSON file.
+5.  In `src/index.js`, update the `FIREBASE_PROJECT_ID` and the `Access-Control-Allow-Origin` URL to match your project.
+6.  Deploy the worker: `wrangler deploy`
+7.  Copy the URL provided by Wrangler and paste it into the `proxyUrl` variable in your main `public/index.html` file.
 
-1. Frontend Setup (Firebase)
+## 🗺️ Future Roadmap
 
-Clone this repository: git clone https://github.com/exanx/zyren.git
+-   [ ] Real-time streaming for AI responses.
+-   [ ] Support for more AI providers.
+-   [ ] In-app message editing and regeneration.
+-   [ ] More advanced persona creation tools.
+-   [ ] UI/UX enhancements and new themes.
 
-Navigate to the project directory: cd zyren
+## 🤝 Contributing
 
-Set up your own Firebase project and create a new Web App.
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/exanx/zyren/issues).
 
-In public/index.html, replace the placeholder firebaseConfig object with your own.
+## 📄 License
 
-Run firebase serve to test locally.
-
-Deploy with firebase deploy --only hosting.
-
-2. Backend Proxy Setup (Cloudflare)
-
-The proxy code is located in the zyren-api-proxy directory.
-
-Navigate to the proxy directory: cd zyren-api-proxy
-
-Install dependencies: npm install
-
-Go to your new Firebase project's settings, under "Service Accounts," and generate a new private key. This will download a JSON file.
-
-Run wrangler secret put FIREBASE_SERVICE_ACCOUNT and paste the entire content of the downloaded JSON file.
-
-In src/index.js, update the FIREBASE_PROJECT_ID and the Access-Control-Allow-Origin URL to match your project.
-
-Deploy the worker: wrangler deploy
-
-Copy the URL provided by Wrangler and paste it into the proxyUrl variable in your main public/index.html file.
-
-🗺️ Future Roadmap
-
-Real-time streaming for AI responses.
-
-Support for more AI providers.
-
-In-app message editing and regeneration.
-
-More advanced persona creation tools.
-
-UI/UX enhancements and new themes.
-
-🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the `LICENSE` file for details.
