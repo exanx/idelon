@@ -1,11 +1,11 @@
 
 <div align="center">
-  <img src="assets/icon-512x512.png" alt="Zyren AI Mascot" width="150"/>
-  <h1>Zyren Chat</h1>
+  <img src="assets/icon-512x512.png" alt="IDOLON Mascot" width="150"/>
+  <h1>Idolon Chat</h1>
   <p><strong>A Private, Secure, and Infinitely Customizable AI Chat Experience.</strong></p>
   
   <p>
-    <a href="https://zyren.web.app"><strong>Try the Live Demo →</strong></a>
+    <a href="https://idolon.web.app"><strong>Try the Live Demo →</strong></a>
   </p>
   
   <p>
@@ -18,9 +18,9 @@
 
 ---
 
-## 🚀 What is Zyren Chat?
+## 🚀 What is Idolon Chat?
 
-Zyren Chat is a sleek, modern chat interface that puts **your privacy and control first**. Unlike other AI chat services, Zyren operates on a "Bring Your Own Key" (BYOK) model. This means you connect your personal API keys from various AI providers, and your conversations happen directly between you and the AI, secured by an enterprise-grade serverless proxy.
+Zyren Chat is a sleek, modern chat interface that puts **your privacy and control first**. Unlike other AI chat services, Idolon operates on a "Bring Your Own Key" (BYOK) model. This means you connect your personal API keys from various AI providers, and your conversations happen directly between you and the AI, secured by an enterprise-grade serverless proxy.
 
 **We never see your API keys or your chat conversations. Ever.**
 
@@ -39,7 +39,7 @@ This project started as a fork of Gemna Chat and has been rebuilt to offer a com
 -   🔄 **Data Portability:** Easily import and export your characters and chat histories as `.json` files.
 -   🗣️ **Text-to-Speech:** Have the AI's responses read aloud with a voice that intelligently matches its persona (powered by Gemini).
 -   🖼️ **AI Image Generation:** Use `/image` and `/sendpic` commands to generate images directly in the chat.
--   📱 **Progressive Web App (PWA):** Install Zyren Chat on your desktop or mobile device for a native-app-like experience.
+-   📱 **Progressive Web App (PWA):** Install Idolon Chat on your desktop or mobile device for a native-app-like experience.
 
 ## 🏛️ Secure Architecture Explained
 
@@ -67,7 +67,7 @@ This ensures your secret keys are only ever decrypted and used in the secure, se
 
 ## 🚀 Getting Started Locally
 
-To run your own instance of Zyren Chat, you'll need two main components: the frontend application and the secure worker proxy.
+To run your own instance of Idolon Chat, you'll need two main components: the frontend application and the secure worker proxy.
 
 ### Prerequisites
 -   Node.js and npm
@@ -75,7 +75,7 @@ To run your own instance of Zyren Chat, you'll need two main components: the fro
 -   Cloudflare Wrangler CLI (`npm install -g wrangler`)
 
 ### 1. Frontend Setup (Firebase)
-1.  Clone this repository: `git clone https://github.com/exanx/zyren.git`
+1.  Clone this repository: `git clone https://github.com/exanx/idolon.git`
 2.  Navigate to the project directory: `cd zyren`
 3.  Set up your own Firebase project and create a new Web App.
 4.  In `public/index.html`, replace the placeholder `firebaseConfig` object with your own.
