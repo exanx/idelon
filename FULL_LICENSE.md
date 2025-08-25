@@ -41,4 +41,4 @@ This includes, but is not limited to:
 
 **Only the original copyright holder may use the Software commercially.**
 
-For commercial licensing inquiries or permissions, please contact: [your@email.com]
+For commercial licensing inquiries or permissions, please contact: [exanxc@email.com]
