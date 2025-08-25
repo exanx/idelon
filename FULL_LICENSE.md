@@ -1,6 +1,6 @@
 MIT License + Commons Clause Restriction
 
-Copyright (c) 2025 [YOUR NAME]
+Copyright (c) 2025 EXANX.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this web application and associated source files (the “Software”), to deal 
