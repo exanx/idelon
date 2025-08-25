@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="assets/icon-512x512.png" alt="IDOLON Mascot" width="150"/>
+  <img src="assets/favicon.svg" alt="IDOLON Mascot" width="150"/>
   <h1>Idolon Chat</h1>
   <p><strong>A Private, Secure, and Infinitely Customizable AI Chat Experience.</strong></p>
   
